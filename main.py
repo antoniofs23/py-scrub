@@ -1,9 +1,5 @@
 import os
-
-# change the working directory when script is run through command-line
-abspath = os.path.abspath(__file__)
-dirname = os.path.dirname(abspath)
-os.chdir(dirname)
+import shutil
 
 dir_dict = {'Documents': ['.DOC', '.DOCX', '.HTML', '.HTM', '.ODT',
                           '.PDF', '.XLS', '.XLSX', '.ODS', '.PPT', '.PPTX', '.TXT', '.MD'],
@@ -14,6 +10,7 @@ dir_dict = {'Documents': ['.DOC', '.DOCX', '.HTML', '.HTM', '.ODT',
             'Music': ['.M4A', '.FLAC', '.MP3', '.WAV', '.WMA', '.AAC']}
 
 common_str = '/home/'+os.getlogin()+'/'
+cwd = os.getcwd()
 
 
 def get_extension(filename):
@@ -28,15 +25,23 @@ files = os.listdir()
 for file in files:
 
     extension = get_extension(file)
-    file_name = dirname+'/'+file
-
+    file_name = cwd+'/'+file
     if extension in dir_dict['Documents']:
+        mv_str = 'Documents'
         file_str = common_str+'Documents/'+file
     elif extension in dir_dict['Pictures']:
+        mv_str = 'Pictures'
         file_str = common_str+'Pictures/'+file
     elif extension in dir_dict['Video']:
-        file_str = common_str+'Video/'+file
+        mv_str = 'Videos'
+        file_str = common_str+'Videos/'+file
     elif extension in dir_dict['Music']:
+        mv_str = 'Music'
         file_str = common_str+'Music/'+file
 
-    os.replace(file_name, file_str)
+    shutil.move(file_name, file_str)
+    print('moved '+file+' to '+mv_str)
+
+print('--------------')
+print('Done Scrubbing')
+print('--------------')
