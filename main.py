@@ -15,8 +15,6 @@ dir_dict = {'Documents': ['.DOC', '.DOCX', '.HTML', '.HTM', '.ODT',
 
 common_str = '/home/'+os.getlogin()+'/'
 
-# determine the file extension
-
 
 def get_extension(filename):
 
