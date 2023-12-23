@@ -10,7 +10,7 @@ dir_dict = {'Documents': ['.DOC', '.DOCX', '.HTML', '.HTM', '.ODT',
             'Pictures': ['.JPEG', '.JPG', '.GIF', '.TIFF', '.PSD', '.EPS', '.AI', '.INDD',
                          '.RAW', '.PNG', '.BMP', '.XCF'],
             'Video': ['.MP4', '.MOV', '.WMV', '.AVI', '.AVCHD', '.FLV', '.F4V', '.SWF',
-                      '.MKV', '.WEBM', '.HTML5'],
+                      '.MKV', '.WEBM', '.HTML5', '.OGG'],
             'Music': ['.M4A', '.FLAC', '.MP3', '.WAV', '.WMA', '.AAC']}
 
 common_str = '/home/'+os.getlogin()+'/'
@@ -20,7 +20,7 @@ def get_extension(filename):
 
     split_filename = os.path.splitext(filename)
 
-    return split_filename[1]
+    return split_filename[1].upper()
 
 
 # get files in working directory
